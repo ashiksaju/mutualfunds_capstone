@@ -80,3 +80,89 @@ aum_crore
 FROM fact_performance
 ORDER BY aum_crore DESC
 LIMIT 10;
+
+-- 11. Total Number of Investors
+
+SELECT COUNT(DISTINCT investor_id) AS total_investors
+FROM fact_transactions;
+
+
+-- 12. Total Investment Amount
+
+SELECT SUM(amount_inr) AS total_investment
+FROM fact_transactions;
+
+
+-- 13. Transactions by Gender
+
+SELECT
+gender,
+COUNT(*) AS total_transactions
+FROM fact_transactions
+GROUP BY gender;
+
+
+-- 14. Transactions by City Tier
+
+SELECT
+city_tier,
+COUNT(*) AS total_transactions
+FROM fact_transactions
+GROUP BY city_tier;
+
+
+-- 15. Average Investment by Income Group
+
+SELECT
+annual_income_lakh,
+AVG(amount_inr) AS avg_investment
+FROM fact_transactions
+GROUP BY annual_income_lakh
+ORDER BY annual_income_lakh;
+
+
+-- 16. Most Popular Payment Modes
+
+SELECT
+payment_mode,
+COUNT(*) AS total
+FROM fact_transactions
+GROUP BY payment_mode
+ORDER BY total DESC;
+
+
+-- 17. KYC Status Distribution
+
+SELECT
+kyc_status,
+COUNT(*) AS investors
+FROM fact_transactions
+GROUP BY kyc_status;
+
+
+-- 18. Total Investment by Transaction Type
+
+SELECT
+transaction_type,
+SUM(amount_inr) AS total_amount
+FROM fact_transactions
+GROUP BY transaction_type;
+
+
+-- 19. Top States by Investment Amount
+
+SELECT
+state,
+SUM(amount_inr) AS total_investment
+FROM fact_transactions
+GROUP BY state
+ORDER BY total_investment DESC;
+
+
+-- 20. Average NAV by Fund
+
+SELECT
+amfi_code,
+AVG(nav) AS average_nav
+FROM fact_nav
+GROUP BY amfi_code;
