@@ -1,4 +1,10 @@
 import pandas as pd
+from pathlib import Path
+
+PROJECT_DIR = Path(__file__).resolve().parent.parent
+
+raw_data = PROJECT_DIR / "data" / "raw"
+processed_data = PROJECT_DIR / "data" / "processed"
 
 files = [
     "01_fund_master.csv",
@@ -12,7 +18,7 @@ files = [
 
 for file in files:
 
-    df = pd.read_csv(f"data/raw/{file}")
+    df = pd.read_csv(raw_data / file)
 
     df = df.drop_duplicates()
 
@@ -33,8 +39,10 @@ for file in files:
     output_file = file.replace(".csv", "_clean.csv")
 
     df.to_csv(
-        f"data/processed/{output_file}",
+        processed_data / output_file,
         index=False
     )
 
     print(f"Saved {output_file}")
+
+print("\nRemaining datasets cleaned successfully!")

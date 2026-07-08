@@ -1,8 +1,0 @@
-Cleaned all 10 datasets
-Removed duplicates and empty rows
-Checked missing values
-Validated NAV, transactions, and performance data
-Created SQLite database 
-Designed star schema 
-Wrote 10 analytical SQL queries 
-Created data dictionary 
